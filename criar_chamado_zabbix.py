@@ -24,6 +24,7 @@ parser.add_argument('--sla', dest='sla', help='SLA')
 parser.add_argument('--triggerid', dest='triggerid', help='Trigger ID do zabbix')
 parser.add_argument('--host', dest='host', help='Nome do host no zabbix')
 parser.add_argument('--status', dest='status', help='Indisponibilidade')
+parser.add_argument('--timeunit', dest='timeunit', help='Unidade de tempo do ticket')
 args = parser.parse_args()
 
 #print(args)
@@ -37,7 +38,7 @@ client.tc.SessionCreate(user_login=args.user, password=args.password)
 #Criando o ticket
 t = Ticket(State='Aberto', Priority='3 normal', Queue=args.fila,
            Title=args.title.decode('UTF8'), CustomerUser=args.customer,
-           Type='Incidente', Service=args.servico, SLA=args.sla)
+           Type='Incidente', Service=args.servico, SLA=args.sla, TimeUnit=args.timeunit)
 a = Article(Subject=args.title.decode('UTF8'), Body=args.descricao.decode('UTF8'), Charset='UTF8',
             MimeType='text/plain')
 
