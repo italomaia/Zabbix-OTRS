@@ -50,5 +50,5 @@ print('Ticket criado: '+str(t_number)+'::'+args.title)
 t_upd = Ticket(State='Em atendimento')
 
 new_article = Article(Subject='Em atendimento', Body='Analisando o incidente.', Charset='UTF8',
-                      MimeType='text/plain')
+                      MimeType='text/plain', TimeUnit=args.timeunit)
 client.tc.TicketUpdate(t_id, ticket=t_upd,article=new_article, attachments=None)
