@@ -38,9 +38,9 @@ client.tc.SessionCreate(user_login=args.user, password=args.password)
 #Criando o ticket
 t = Ticket(State='Aberto', Priority='3 normal', Queue=args.fila,
            Title=args.title.decode('UTF8'), CustomerUser=args.customer,
-           Type='Incidente', Service=args.servico, SLA=args.sla, TimeUnit=args.timeunit)
+           Type='Incidente', Service=args.servico, SLA=args.sla)
 a = Article(Subject=args.title.decode('UTF8'), Body=args.descricao.decode('UTF8'), Charset='UTF8',
-            MimeType='text/plain')
+            MimeType='text/plain', TimeUnit=args.timeunit)
 
 t_id, t_number = client.tc.TicketCreate(t, a, None, None)
 print('Ticket criado: '+str(t_number))
